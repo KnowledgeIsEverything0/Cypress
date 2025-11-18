@@ -3,7 +3,7 @@ Overview
 
 This project contains end-to-end Cypress tests written to validate core functionality of the Grabdocs web application, including:
 
-Login + 2FA bypass
+Login
 
 File upload + download
 
