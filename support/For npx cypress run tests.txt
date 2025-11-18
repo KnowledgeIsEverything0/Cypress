@@ -1,0 +1,33 @@
+Put this at the end of the spec for video creating purposes: cy.wait(3000);
+
+npx cypress run --spec cypress/e2e/1_login.cy.js --browser chrome --headless
+
+npx cypress run --spec cypress/e2e/2_upload.cy.js --browser chrome --headless
+
+npx cypress run --spec cypress/e2e/3_download.cy.js --browser chrome --headless
+
+npx cypress run --spec cypress/e2e/4_ask.cy.js --browser chrome --headless
+
+npx cypress run --spec cypress/e2e/5_chat.cy.js --browser chrome --headless
+
+npx cypress run --spec cypress/e2e/6_reach.cy.js --browser chrome --headless
+
+npx cypress run --spec cypress/e2e/7_links.cy.js --browser chrome --headless
+
+npx cypress run --spec cypress/e2e/8_calendar.cy.js --browser chrome --headless
+
+npx cypress run --spec cypress/e2e/9_forms.cy.js --browser chrome --headless
+
+npx cypress run --spec cypress/e2e/t10_profileUpdate.cy.js --browser chrome --headless
+
+npx cypress run --spec cypress/e2e/t11_analytics.cy.js --browser chrome --headless
+
+npx cypress run --spec cypress/e2e/t12_workspace.cy.js --browser chrome --headless
+
+npx cypress run --spec cypress/e2e/t13_chatHistory.cy.js --browser chrome --headless
+
+npx cypress run --spec cypress/e2e/t14_logout.cy.js --browser chrome --headless
+
+npx cypress run --spec cypress/e2e/t15_feedback.cy.js --browser chrome --headless
+
+npx cypress run --spec cypress/e2e/t16_settings.cy.js --browser chrome --headless
