@@ -1,0 +1,15 @@
+{
+  "name": "cypress_automation",
+  "version": "1.0.0",
+  "description": "Cypress Automation",
+  "license": "ISC",
+  "author": "Sean Wright",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "cypress": "^15.6.0"
+  }
+}
