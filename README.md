@@ -1,7 +1,9 @@
 Grabdocs Cypress Automation – README
 Overview
 
-This project contains end-to-end Cypress tests written to validate core functionality of the Grabdocs web application, including:
+The 00_Bookmark.cy.js contains code that tests certain functions of the bookmark feature in an webapp called Grabdocs
+
+This project also contains end-to-end Cypress tests written to validate core functionality of other Grabdocs functions, including:
 
 Login
 
