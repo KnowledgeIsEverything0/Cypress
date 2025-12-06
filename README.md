@@ -36,6 +36,8 @@ Project Structure
 cypress/
 
  ├── e2e/
+
+ │    ├── 00_Bookmark.cy.js
  
  │    ├── 1_login.cy.js
  
