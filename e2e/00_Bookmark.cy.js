@@ -50,7 +50,7 @@ describe("Feature – Bookmark", () => {
     cy.wait(3000);
 
     // Fill out form
-    cy.get('input[placeholder="Enter bookmark name"]').type(bookmarkName);
+    cy.get('input[placeholder="Bookmark name"]').type(bookmarkName);
     cy.get('textarea[placeholder="Optional description"]').type(bookmarkDescription);
     cy.wait(3000);
 
@@ -73,23 +73,42 @@ it("toggles the file list within an existing bookmark from Files page", () => {
   cy.wait(3000);
   cy.contains("Files").click();
   cy.wait(3000);
+
   cy.get('button[title="View Bookmarks"]').click();
   cy.wait(3000);
 
-  // Step 1: Expand the list (files (1))
-  cy.contains('button', /files \(\d+\)/i).click();
-  cy.wait(3000);
+  // Scope to a bookmark card so we don't hit the wrong toggle elsewhere
+  cy.contains("h4", "Cypress Bookmar")
+    .parents("div.border.border-gray-200")
+    .first()
+    .within(() => {
 
-  // Step 2: Confirm expanded state
-  cy.contains('button', 'Hide files').should('be.visible');
+      // Step 1: Expand by clicking the numeric toggle button (text is only digits)
+      cy.get('button.inline-flex.items-center')
+        .filter((_, el) => /^\d+$/.test(el.innerText.trim()))
+        .first()
+        .click();
 
-  // Step 3: Collapse the list
-  cy.contains('button', 'Hide files').click();
-  cy.wait(3000);
+      cy.wait(1000);
 
-  // Step 4: Confirm collapsed state
-  cy.contains('button', /files \(\d+\)/i).should('be.visible');
-  });
+      // Step 2: Confirm expanded state (button text becomes Hide)
+      cy.contains('button', /^Hide$/).should('be.visible');
+
+      // Optional: confirm chevron rotates
+      cy.contains('button', /^Hide$/).find('svg').should('have.class', 'rotate-180');
+
+      // Step 3: Collapse again
+      cy.contains('button', /^Hide$/).click();
+
+      cy.wait(1000);
+
+      // Step 4: Confirm collapsed state (Hide is gone, numeric toggle returns)
+      cy.contains('button', /^Hide$/).should('not.exist');
+      cy.get('button.inline-flex.items-center')
+        .filter((_, el) => /^\d+$/.test(el.innerText.trim()))
+        .should('be.visible');
+    });
+});
 
   // Test 5. Edit A Bookmark From File Tab
   it("edits an existing bookmark in Files", () => {
@@ -112,7 +131,7 @@ it("toggles the file list within an existing bookmark from Files page", () => {
   cy.wait(3000);
 
   // Update the bookmark name
-  cy.get('input[placeholder="Enter bookmark name"]')
+  cy.get('input[placeholder="Bookmark name"]')
     .clear()
     .type("Cypress Bookmark (updated)");
   cy.wait(3000);
@@ -171,7 +190,7 @@ it("toggles the file list within an existing bookmark from Files page", () => {
   cy.wait(3000);
 
   // Update name and description
-  cy.get('input[placeholder="Enter bookmark name"]')
+  cy.get('input[placeholder="Bookmark name"]')
     .clear()
     .type("Cypress Bookmark (home updated)");
   cy.wait(3000);
@@ -211,20 +230,32 @@ it("toggles the file list within an existing bookmark from Files page", () => {
   cy.visit("/");
   cy.wait(3000);
 
-  // Open bookmark panel
   cy.get('button[title="Show Bookmarks"]').click();
   cy.wait(3000);
 
-  // Expand the file list (looks like: files (1))
-  cy.contains('button', /files \(\d+\)/i).first().click();
-  cy.wait(3000);
+  cy.contains("h4", "Cypress Bookmar")
+    .parents("div.border.border-gray-200")
+    .first()
+    .within(() => {
 
-  // Verify expanded state shows Hide files button
-  cy.contains('button', 'Hide files').should('be.visible');
-  cy.wait(3000);
+      // Expand (numeric toggle)
+      cy.get('button.inline-flex.items-center')
+        .filter((_, el) => /^\d+$/.test(el.innerText.trim()))
+        .first()
+        .click();
 
-  // Collapse the list again
-  cy.contains('button', 'Hide files').click();
-  cy.wait(3000);
+      cy.wait(1000);
+
+      // Expanded state = Hide button visible
+      cy.contains('button', /^Hide$/).should('be.visible');
+
+      // Collapse
+      cy.contains('button', /^Hide$/).click();
+
+      cy.wait(1000);
+
+      // Back to collapsed state
+      cy.contains('button', /^Hide$/).should('not.exist');
+    });
   });
 });
