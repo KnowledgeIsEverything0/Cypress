@@ -1,7 +1,7 @@
 Grabdocs Cypress Automation – README
 Overview
 
-The 00_Bookmark.cy.js within the e2e file contains code that tests certain functions of the bookmark feature in an webapp called Grabdocs
+The 00_Bookmark.cy.js within the e2e file contains code that tests certain functions of the bookmark feature in an webapp called Grabdocs(00_Bookmark.cy.js is the feature we tested for a hands on assignment)
 
 This project also contains end-to-end Cypress tests written to validate core functionality of other Grabdocs functions, including:
 
